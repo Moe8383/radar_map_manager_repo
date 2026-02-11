@@ -51,7 +51,7 @@ RMM 兼容所有能够接入 Home Assistant 的毫米波雷达（包括 1D/2D/3D
 * **ESPHome** (推荐)
 * **MQTT**
 * **Zigbee** (需支持坐标上报)
-* 
+
 ### ⚠️ 坐标实体命名规范 (重要)
 为了确保系统能正确识别雷达数据，请务必遵循以下命名格式：
 
@@ -72,7 +72,7 @@ RMM 兼容所有能够接入 Home Assistant 的毫米波雷达（包括 1D/2D/3D
 ### 方式一：HACS 自动安装 (推荐)
 1.  打开 HACS -> Integrations。
 2.  点击右上角菜单 -> **Custom repositories**。
-3.  填入本仓库地址 `https://github.com/Moe8383/radar_map_manager_repo`，类别选择 **Integration**。
+3.  填入本仓库地址 `https://github.com/Moe8383/radar_map_manager`，类别选择 **Integration**。
 4.  搜索 "Radar Map Manager" 并点击安装。
 5.  重启 Home Assistant。
 
