@@ -108,37 +108,129 @@ target_colors:                       # Optional, custom colors for raw radar tar
   - "#FF00FF"
 ```
 
-### Step 3: Start Editing
-Click the ⚙️ (Gear) icon on the card to enter Edit Mode.
-
-Add Radar: Click Layout -> + and select your radar entity.
-
-Adjust: Drag the radar, adjust Rotation and Scale to match your floor plan.
-
-Draw Zones: Switch to Zones mode to draw polygons for automation triggers.
-
----
-
-🔜 Roadmap
-We are committed to creating the ultimate radar experience. Future plans include:
-
-Auto-Calibration: "One-click map alignment" using IMU (requires upcoming RMM Pro hardware).
-
-High-Frequency Mode: Unlock 20Hz+ silky-smooth tracking with custom firmware.
-
-Edge Computing: Offload zone processing to hardware for zero-latency automation.
+**Use inside a Picture-Elements Card:**
+```yaml
+type: picture-elements
+image: /local/floorplan/3dplan/blank_floor.png
+elements:
+  - type: custom:radar-map-card
+    target_radius: 5
+    read_only: true
+    style:
+      top: 50%
+      left: 50%
+      width: 100%
+      height: 100%
+      transform: translate(-50%, -50%)
+      pointer-events: none
+```
 
 ---
 
-❤️ Support
-If you find this project helpful, please give it a ⭐️ Star!
+## 🪄 Editor Mode Guide
+
+Click the ⚙️ icon in the top right corner of the card to enter Edit Mode.
+
+### A. 📡 Radar Layout (Layout)
+
+Click `Layout` in the panel to enter radar layout mode. Targets displayed here are raw radar coordinates.
+
+![LAYOUT](images/layout_1.png)
+
+#### 1. Add/Delete Radar
+
+* Add: Click `+`, enter the radar name as defined in HA. For example, if the coordinate entity is `sensor.rd_ld2450_target_1_x`, enter: `rd_ld2450`
+
+* Delete: Select an added radar and click `-` to delete it. Operate with caution.
+
+#### 2. Radar Settings
+
+![LAYOUT](images/layout_2.png)
+
+* Positioning: Drag the radar to its actual physical location on the map. Drag the radar handle to adjust the angle. Position and rotation can be fine-tuned using the `X`/`Y`/`Rot` inputs in the panel.
+
+* Scale Adjustment: Stand within the radar's detection range (preferably away from the center line and try multiple positions). Use a combination of these methods to match radar targets with the floor plan:
+  
+  * 1（recommend). Click the `Freeze` button. This locks the first target detected by the radar. Manually drag this target to your actual standing position on the floor plan, and the system will automatically calculate the scale.
+  * 2. Adjust `ScX` and `ScY` sliders to change the `X`/`Y` coordinate scaling.
+  * 3. Click `Ax` / `Ay` to automatically adjust based on the background image aspect ratio (reference only).
+  
+
+* Mounting Mode: Check `Ceiling` at the bottom of the panel to switch between "Side Mount" and "Ceiling Mount".
+
+* Mirror Mode: Check `Mirror` to invert the radar's X-axis.
+
+* 3D Correction: Check `3D` and input the radar installation `height` (in meters) to enable 3D geometric correction. If the radar height is within standard ranges, this may not be necessary.
+
+* UNDO: Undo the last operation.
+
+#### 3. Radar Monitor Zones
+
+![LAYOUT](images/layout_monitor.png)
+![LAYOUT](images/layout_monitor_exam_1.png)
+
+* Select a radar via the panel or the map, then click the `Monitor` button to edit its monitor zones.
+
+* Add Zone: Click `ADD NEW`, define the shape by clicking polygon points on the map, name the zone, and click `FINISH` to save.
+
+* Adjust Zone: Select a zone and drag points to adjust the shape. Double-click a point to delete it.
+
+* Delete Zone: Select a zone and click `DEL` to remove it; click `CLR ALL` to remove all monitor zones for that radar (Caution!).
+
+* Click `DONE` to exit Monitor zone editing.
+
+
+### B. 🛡️ Zone Management (Zones)
+
+Click `Zones` in the panel to enter global zone management. Note: Zones here are global and relate only to fused targets, not specific radars. Targets displayed here are fused coordinates (default gold color).
+
+![ZONE](images/zones_1.png)
+
+#### 1. Detect Trigger Zones
+
+![ZONE](images/zones_exam_1.png)
+
+* Editing operations are the same as Monitor zones.
+
+* Delay: Supports setting a target entry delay. Enter the delay time (in seconds) in the `Dly` box to prevent false alarms caused by transient anomalies.
+
+* Automation: Once set, this automatically creates "Presence" and "Count" entities for automation.
+
+
+#### 2. Detect Exclude Zones
+
+![ZONE](images/zones_exam_2.png)
+
+* Editing operations are the same as Monitor zones.
+
+* Fused targets falling into this zone will not be displayed or triggered. Use this to mask interference from fans, air conditioners, etc.
+
+### C. ⚙️ Settings (Set)
+
+Click `Set` in the panel for global parameters.
+
+![SET](images/set_1.png)
+
+* `Update`: Radar target refresh interval.
+
+* `Merge`: Radar target fusion distance. Targets from different radars within this distance will be merged.
+
+* `Tgt_H`: Target centroid height, used for 3D correction.
+
+* `Color`: Custom color for fused targets.
+
+* `Backup`: Backup current configuration and export to a file.
+
+* `Restore`: Import a file to restore configuration.
+
+
+## ❤️ Support the Project
+If you find this project helpful, please give it a **⭐️ Star**！
 
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/moe8383)
 [![支持我](https://img.shields.io/badge/赞助-爱发电-af46a1?style=for-the-badge&logo=alipay&logoColor=white)](https://afdian.com/a/moe8383)
 
-Bugs: Please open an Issue.
-
-Discussions: Share your setup in the Discussions tab.
+* **Bug Reports: Please submit an [Issue](https://github.com/Moe8383/radar_map_manager_repo/issues)。
 
 License: MIT
 
