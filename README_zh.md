@@ -1,4 +1,3 @@
-```markdown
 # Radar Map Manager (RMM)
 
 ![Logo](logo.png)
