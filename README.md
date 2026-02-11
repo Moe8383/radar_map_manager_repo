@@ -4,7 +4,7 @@
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
 
-> 🇨🇳 [中文说明文档](README_zh.md)
+> 🇺🇸 English Documentation | 🇨🇳 [中文文档](README_zh.md)
 
 **Radar Map Manager (RMM)** is a millimeter-wave radar visualization and data fusion integration built specifically for Home Assistant.
 
