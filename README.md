@@ -50,16 +50,16 @@ RMM is compatible with any millimeter-wave radar integrated into Home Assistant 
     * MQTT
     * Zigbee (Must support coordinate reporting)
 
-* **Entity Naming Convention** ‼️ IMPORTANT ‼️ :
-To ensure the system correctly identifies radar data, please follow these naming formats:
+* **Entity Naming Convention**
+   * ‼️ IMPORTANT ‼️ To ensure the system correctly identifies radar data, please follow these naming formats:
 
-* **1D Radar**: `sensor.[radar_name]_distance`
-  * *Example: `sensor.rd_ld2410_distance`*
-* **2D/3D Radar**: `sensor.[radar_name]_target_?_x`
-  * *Must include: `_x`, `_y`, `_z` coordinates*
-  * *Example: `sensor.rd_ld6004_target_1_x`*
-* **Radar Target Count [Optional]**: `sensor.[radar_name]_presence_target_count`
-  * *Example: `sensor.rd_ld2450_presence_target_count`*
+   * **1D Radar**: `sensor.[radar_name]_distance`
+     * *Example: `sensor.rd_ld2410_distance`*
+   * **2D/3D Radar**: `sensor.[radar_name]_target_?_x`
+     * *Must include: `_x`, `_y`, `_z` coordinates*
+     * *Example: `sensor.rd_ld6004_target_1_x`*
+   * **Radar Target Count [Optional]**: `sensor.[radar_name]_presence_target_count`
+     * *Example: `sensor.rd_ld2450_presence_target_count`*
 
 ---
 
