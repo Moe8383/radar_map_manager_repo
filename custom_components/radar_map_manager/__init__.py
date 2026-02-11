@@ -7,6 +7,7 @@ from datetime import timedelta
 from homeassistant.core import HomeAssistant, ServiceCall
 from homeassistant.const import EVENT_HOMEASSISTANT_STARTED
 from homeassistant.components.http import StaticPathConfig
+from homeassistant.components.frontend import add_extra_js_url
 from homeassistant.helpers.event import async_track_time_interval
 from homeassistant.helpers import config_validation as cv
 from homeassistant.helpers import discovery
@@ -56,6 +57,8 @@ async def async_setup(hass: HomeAssistant, config: dict):
         await hass.http.async_register_static_paths([
             StaticPathConfig("/radar_map_manager", www_dir, cache_headers=False)
         ])
+        
+        add_extra_js_url(hass, "/radar_map_manager/radar-map-card.js?v=1.0.0")
 
     coordinator = RadarCoordinator(hass)
     await coordinator.async_load()
