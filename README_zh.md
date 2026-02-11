@@ -6,11 +6,11 @@
 
 > 🇺🇸 **English User?** [Click here for English Documentation](README.md)
 
-**Radar Map Manager (RMM)** 是专为 Home Assistant 打造的高级毫米波雷达可视化与数据融合集成。
+**Radar Map Manager (RMM)** 是专为 Home Assistant 打造的毫米波雷达可视化与数据融合集成。
 
-它不仅仅是一个户型图卡片，更是一个强大的**空间感知引擎**。RMM 能将家中分散的多个毫米波雷达的数据统一映射到您的户型图上，实现全屋人员定位追踪、轨迹可视化以及基于精确坐标的自动化触发。
+它不仅仅是一个户型图卡片，更是一个**空间感知引擎**。RMM 能将家中分散的多个毫米波雷达的数据统一映射到您的多个户型图上，实现全屋人员定位追踪、轨迹可视化以及基于精确坐标的自动化触发。
 
-> 🚀 **V1.0.0 正式发布！** 支持顶装模式 (Ceiling Mount)、排除干扰区 (Exclude Zones) 以及更丝滑的编辑器体验。
+> 🚀 **V1.0.0 正式发布！** 
 
 ---
 
@@ -19,7 +19,7 @@
 ### 1. 🎯 所见即所得的可视化编辑器
 抛弃繁琐的 YAML 坐标计算！RMM 提供了一个交互式的前端编辑器：
 * **双模式支持**：支持**配置模式 (config)** 和 **展示模式 (read_only)** 两种模式，配置、展示两不误。
-* **多楼层支持**：支持**多楼层（map_group）** 轻松管理多个楼层和地点，为你的家庭、办公室设置独立的视图。
+* **多户型/楼层支持**：支持**多户型（map_group）** 轻松管理多个楼层和地点，为你的家庭、办公室设置独立的视图。
 * **灵活自由的雷达配置**：直接在户型图上拖拽雷达位置，支持雷达的旋转、缩放和镜像翻转，一站式管理雷达。
 * **自动定位缩放**：通过freeze功能，可以可视化的定位雷达目标在户型图上的相对位置，让你轻松调整雷达缩放，告别忙猜。
 * **雷达安装方式支持**：完美支持 **侧装 (Side Mount)** 和 **顶装 (Ceiling Mount)** 雷达。
@@ -29,7 +29,8 @@ RMM 的目标融合引擎能将多个雷达的目标点统一到一个坐标系�
 * **自动聚类**：当多个雷达探测到同一个人时，自动合并为一个目标，避免“影分身”，融合范围支持自定义。
 * **盲区互补**：通过多雷达叠加，消除房间内的探测死角。
 
-### 3. 🛡️ 强大的区域管理
+### 3. 🛡️ 灵活的区域管理（Zones Manager）
+所有区域支持任意多边形，灵活的编辑方式，让你轻松管理区域
 * **雷达监测区 (Monitor Zones)**：可以为每个雷达单独设置监测区，只有进入该区域才会触发该雷达的目标融合与显示；如果不设置则默认全局融合。
 * **全局监测区 (Detect Zones)**：**自动化神器！** 在户型图上自由设置监测区，当融合目标进入该区域后，会触发HA的实体（自动生成）。同时，可以自定义触发延迟，避免误报。
 * **全局排除区 (Exclude Zones)**：**解决误报的神器！** 在地图上圈出风扇、窗帘或绿植的位置，将其设为“排除区”，引擎会自动过滤掉该区域内的所有干扰信号。
@@ -82,12 +83,36 @@ RMM 兼容所有能够接入 Home Assistant 的毫米波雷达，包括1D 2D 3D�
 2.  搜索 **Radar Map Manager** 卡片。
 3.  或者使用以下 YAML 配置：
 
+独立使用：
 ```yaml
 type: custom:radar-map-card
-map_group: default
-bg_image: /local/floorplan.png  # 您的户型图路径
-target_radius: 8                # 目标点大小
-target_colors:                  # 自定义目标颜色
-  - "#00FF00"
+map_group: default                     # 可选，户型图/楼层名称，默认default
+read_only: false                       # 可选，true为编辑模式，false为展示模式，默认false
+bg_image: /local/floorplan/house.png   # 编辑模式下必填，户型图图片
+target_radius: 5                       # 可选，融合目标大小
+show_labels: true                      # 可选，显示区域名称
+handle_radius: 1.5                     # 可选，区域端点大小
+handle_stroke: 0.2                     # 可选，区域激活端点大小
+zone_stroke: 0.5                       # 可选，区域线条粗细
+label_size: 2                          # 可选，区域名称字体大小
+target_colors:                         # 可选，雷达原始目标自定义颜色
+  - yellow
   - "#00FFFF"
   - "#FF00FF"
+```
+在picture-elements卡片中使用：
+```yaml
+type: picture-elements
+image: /local/floorplan/3dplan/blank_floor.png
+elements:
+  - type: custom:radar-map-card
+    target_radius: 5
+    read_only: true
+    style:
+      top: 50%
+      left: 50%
+      width: 100%
+      height: 100%
+      transform: translate(-50%, -50%)
+      pointer-events: none
+```
