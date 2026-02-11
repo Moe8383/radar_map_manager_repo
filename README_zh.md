@@ -217,4 +217,12 @@ elements:
 
 * Restore: 导入文件恢复配置
 
+❤️ 支持项目
+如果你觉得这个项目对你有帮助，请给它点个 ⭐️ Star！
 
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/moe8383)
+[![支持我](https://img.shields.io/badge/赞助-爱发电-af46a1?style=for-the-badge&logo=alipay&logoColor=white)](https://afdian.com/a/moe8383)
+
+问题反馈 (Bugs)：请提交 Issue.
+
+交流讨论 (Discussions)：欢迎在 Discussions 板块分享你的配置心得。
