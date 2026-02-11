@@ -1,0 +1,136 @@
+add_radar:
+  name: Add Radar
+  description: Adds a new radar to the system, optionally assigning it to a specific map/floor.
+  fields:
+    radar_name:
+      name: Radar Name
+      description: The unique name for the radar (e.g., living_room_radar).
+      required: true
+      selector:
+        text:
+    map_group:
+      name: Map Group
+      description: The map/floor ID this radar belongs to (e.g., floor_1, garden). Defaults to 'default'.
+      required: false
+      default: default
+      selector:
+        text:
+
+remove_radar:
+  name: Remove Radar
+  description: Removes a radar and its configuration from the system.
+  fields:
+    radar_name:
+      name: Radar Name
+      description: The name of the radar to remove.
+      required: true
+      selector:
+        text:
+
+update_radar_zone:
+  name: Update Zone
+  description: "Updates or adds a zone. If radar_name is omitted, it updates a global zone for the specified map."
+  fields:
+    radar_name:
+      name: Radar Name
+      description: The radar this zone belongs to (for monitor zones). Leave empty for Global Zones.
+      required: false
+      selector:
+        text:
+    zone_type:
+      name: Zone Type
+      description: Type of zone (monitor_zones, include_zones, exclude_zones).
+      required: true
+      selector:
+        select:
+          options:
+            - monitor_zones
+            - include_zones
+            - exclude_zones
+    points:
+      name: Points
+      description: List of [x, y] coordinates defining the polygon (0-100 scale).
+      required: true
+      selector:
+        object:
+    map_group:
+      name: Map Group
+      description: The map ID this zone belongs to. Essential for Global Zones.
+      required: false
+      default: default
+      selector:
+        text:
+
+update_radar_layout:
+  name: Update Layout
+  description: Updates the physical layout parameters of a radar.
+  fields:
+    radar_name:
+      name: Radar Name
+      description: The radar to configure.
+      required: true
+      selector:
+        text:
+    layout:
+      name: Layout Configuration
+      description: Dictionary containing x, y, scale, rotation, height, etc.
+      required: true
+      selector:
+        object:
+    map_group:
+      name: Map Group
+      description: Move this radar to a different map group.
+      required: false
+      selector:
+        text:
+
+generate_radar_config:
+  name: Apply Configuration
+  description: Forces a re-calculation of all zones and configurations.
+
+update_global_config:
+  name: Update Global Config
+  description: Updates system-wide settings like update interval or target height.
+  fields:
+    update_interval:
+      name: Update Interval
+      description: How often to refresh the sensor (seconds).
+      required: false
+      selector:
+        number:
+          min: 0.1
+          max: 5.0
+          step: 0.1
+          unit_of_measurement: s
+    merge_distance:
+      name: Merge Distance
+      description: Distance threshold to merge targets (meters).
+      required: false
+      selector:
+        number:
+          min: 0.1
+          max: 5.0
+          step: 0.1
+          unit_of_measurement: m
+    target_height:
+      name: Target Height
+      description: Reference height for 3D correction (meters).
+      required: false
+      selector:
+        number:
+          min: 0.0
+          max: 3.0
+          step: 0.1
+          unit_of_measurement: m
+
+import_config:
+  name: Import Configuration
+  description: Restore full configuration from a JSON string.
+  fields:
+    json_str:
+      name: JSON String
+      description: The full JSON configuration string exported from the UI.
+      required: true
+      selector:
+        text:
+          multiline: true

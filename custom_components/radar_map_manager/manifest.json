@@ -1,0 +1,12 @@
+{
+  "domain": "radar_map_manager",
+  "name": "Radar Map Manager",
+  "codeowners": [],
+  "config_flow": false,
+  "dependencies": [],
+  "documentation": "https://github.com/your_username/radar_map_manager",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/your_username/radar_map_manager/issues",
+  "requirements": [],
+  "version": "1.0.0"
+}
