@@ -125,6 +125,8 @@ elements:
 
 ### 雷达布局（LAYOUT）
 
+![LAYOUT](images/layout_1.png)
+
 #### 1. 添加雷达
 
 点击 + 号，输入在HA中的雷达名称，如雷达的坐标为 sensor.rd_ld2450_target_1_x，则输入雷达名称：rd_ld2450
