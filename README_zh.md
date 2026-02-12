@@ -134,6 +134,8 @@ elements:
 
 点击卡片右上角的⚙️，进入编辑模式。
 
+![RMM](gif/open_rmm.gif)
+
 ### A. 📡 雷达布局（Layout）
 
 点击面板中的 `Layout` 进入雷达布局模式，此时显示的目标是雷达的原始坐标（1D雷达目标用D标签显示）。
@@ -148,13 +150,16 @@ elements:
 
 #### 2. 雷达设置
 
-![LAYOUT](images/layout_2.png)
+![LAYOUT](gif/layout_editor.gif)
 
 * 雷达定位：拖动雷达到实际摆放的位置，拖动雷达“把手”选择角度。位置和角度可以通过面板的`X`/`Y`/`Rot`进行微调。
 
 * 调整比例：站在雷达监测范围内（建议尽量远离中线，并尝试多个位置提高精准度），建议综合采用以下几种方法，使雷达目标与户型图吻合：
 
   * 方法一（推荐）：点击 `Freeze` 按钮，会锁定雷达识别的第1个目标，手动拖动该目标至你所处于的户型图位置，会自动计算缩放比例
+
+![LAYOUT](gif/layout_freeze.gif)
+
   * 方法二：通过调整面板中的 `ScX` 和 `ScY` ，调整 `X`/`Y` 坐标的显示比例
   * 方法三：点击 `Ax`/`Ay` 会根据背景图比例自动调整（供参考）
   
@@ -169,8 +174,7 @@ elements:
 
 #### 3. 雷达监测区域设置
 
-![LAYOUT](images/layout_monitor.png)
-![LAYOUT](images/layout_monitor_exam_1.png)
+![LAYOUT](gif/layout_monitor.gif)
 
 * 通过面板或底图选中某个雷达，点击面板 `Monitor` 按钮，进入该雷达的监测区域设置
 
@@ -189,17 +193,17 @@ elements:
 
    注意：Zones 是基于融合后的坐标进行判断的，不依赖于特定雷达。此时地图上显示的是融合后的目标（默认为金色）。
 
-![ZONE](images/zones_1.png)
+![ZONE](gif/zones_select.gif)
 
 #### 1. Detect Trigger 区域
-
-![ZONE](images/zones_exam_1.png)
 
 * 编辑操作与 Monitor 区域相同。
 
 * `Dly` (延迟)：支持设置目标进入/离开的消抖延迟（单位：秒），避免误报。
 
 * 用途：设置后会自动创建 `binary_sensor` (存在) 和 `sensor` (人数) 实体，用于自动化。
+
+![ZONE](images/rmm_sensors.png)
 
 
 #### 2. Detect Exclude 区域
@@ -225,6 +229,8 @@ elements:
 * `Color`: 自定义融合目标的显示颜色
 
 * `Backup` / `Restore`: 导出或导入 JSON 配置文件，方便备份与迁移。
+
+![SET](gif/set_color.gif)
 
 
 ## ❤️ 支持项目
