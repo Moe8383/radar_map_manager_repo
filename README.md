@@ -191,15 +191,13 @@ Click `Zones` in the panel to enter global zone management. Note: Zones here are
 
 #### 1. Detect Trigger Zones
 
-![ZONE](images/zones_exam_1.png)
-
 * Editing operations are the same as Monitor zones.
 
 * Delay: Supports setting a target entry delay. Enter the delay time (in seconds) in the `Dly` box to prevent false alarms caused by transient anomalies.
 
 * Automation: Once set, this automatically creates "Occupancy" and "Count" entities for automation.
 
-![ZONE](gif/zones_select.gif)
+![ZONE](images/rmm_sensors.png)
 
 
 #### 2. Detect Exclude Zones
